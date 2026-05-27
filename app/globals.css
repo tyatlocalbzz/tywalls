@@ -1,26 +1,201 @@
 @import "tailwindcss";
 
+/* ============================================
+   TY WALLS — FIELD LEDGER
+   The public face of someone who keeps a recorder running.
+   Aged paper, deep ink, warm rust, and brass.
+   Distinctive, textured, human. No AI slop.
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Field Ledger palette — warm, analog, specific */
+  --paper: #f4ede3;
+  --paper-dark: #e8dfcf;
+  --ink: #141310;
+  --ink-muted: #4a463f;
+  --rust: #8B3A2A;           /* sharp, warm, recorder-red */
+  --rust-dark: #6e2f22;
+  --brass: #b89c6e;          /* quiet highlight */
+  --tape-brown: #3f342d;
+  --rule: #c9b8a0;
+
+  /* Typography — distinctive, not generic */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Spectral", Georgia, serif;
+  --font-mono: var(--font-mono);
+
+  /* Type scale — generous and literary */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+
+  --text-h1: clamp(2.75rem, 2.2rem + 2.2vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+
+  --leading-snug: 1.15;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Breathing room with character */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --max-content: 46rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Subtle paper texture via multiple layered gradients + noise simulation */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+  background: 
+    linear-gradient(rgba(0,0,0,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.012) 1px, transparent 1px),
+    var(--paper);
+  background-size: 4px 4px, 4px 4px, 100% 100%;
+  font-feature-settings: "kern" "tnum" "ss01";
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Strong, distinctive display typography */
+h1, .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-snug);
+}
+
+h1 {
+  font-size: var(--text-h1);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* Links with character */
+a {
+  color: var(--rust);
+  text-decoration: none;
+  transition: color 150ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--rust-dark);
+  border-bottom-color: var(--rust);
+}
+
+/* Buttons — tactile, not slick */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 2px;
+  transition: all 180ms ease;
+  text-decoration: none;
+  border: 1px solid currentColor;
+}
+
+.btn-primary {
+  background: var(--rust);
+  color: #f4ede3;
+  border-color: var(--rust);
+}
+
+.btn-primary:hover {
+  background: var(--rust-dark);
+  border-color: var(--rust-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.btn-ghost:hover {
+  background: var(--paper-dark);
+  border-color: var(--ink);
+}
+
+/* Article cards — ledger style */
+.article-card {
+  display: block;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  transition: all 200ms ease;
+}
+
+.article-card:hover {
+  border-color: var(--ink);
+  padding-left: 4px;
+}
+
+.article-card:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Subtle motion on load for delight */
+@keyframes tapeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hero-content > * {
+  animation: tapeIn 0.6s cubic-bezier(0.23, 1.0, 0.32, 1) backwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 80ms; }
+.hero-content > *:nth-child(2) { animation-delay: 160ms; }
+.hero-content > *:nth-child(3) { animation-delay: 240ms; }
+.hero-content > *:nth-child(4) { animation-delay: 320ms; }
+
+/* Small transcript/mono moments */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  letter-spacing: -0.01em;
+}
+
+/* Footer */
+footer {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+  border-top: 1px solid var(--rule);
+}
+
+/* Focus states with character */
+:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 4px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
