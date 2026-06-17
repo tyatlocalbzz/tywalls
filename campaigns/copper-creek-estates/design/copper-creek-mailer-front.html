@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copper Creek — Mailer Front</title>
+<!--
+  Copper Creek EDDM mailer — FRONT (production).
+  Canonical golf-cart design from the Claude Design handoff
+  (Copper Creek Mailer Front.html), with press-ready print setup
+  (11" x 6.25" trim + 0.125" bleed + crop marks) folded in.
+
+  Copy standards (project CLAUDE.md):
+    - Golf-cart incentive ALWAYS worded "free custom golf cart with your custom home"
+    - Tax rate 1.552% (~half of nearby Flower Mound / Lantana)
+    - Contact: Michael Cannaday · 817.371.4848 · estatesofcoppercreek.com
+    - EDDM 11"x6.25" (2200x1250 @ 200dpi). Tour-driven, no event date.
+
+  Screen: scales to fit the viewport. Print: lays out at trim+bleed with crop marks.
+  To export a print PDF, open and Print (or use the -print behavior in any browser
+  with "Background graphics" enabled).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:      #F4ECDD;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: #15110d;
+    font-family: var(--font-sans);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .frame {
+    position: relative;
+    width: min(100vw, calc(100vh * 2200 / 1250));
+    aspect-ratio: 2200 / 1250;
+  }
+  /* 2200×1250 = 11" × 6.25" at 200dpi (EDDM-eligible). */
+  .mailer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2200px;
+    height: 1250px;
+    transform-origin: 0 0;
+    overflow: hidden;
+    box-shadow:
+      0 60px 120px -40px rgba(0,0,0,0.6),
+      0 12px 32px -8px rgba(0,0,0,0.35);
+    /* warm sunset fallback so the design reads before the photo is dropped */
+    background:
+      linear-gradient(180deg, #6E4B6E 0%, #B5663C 42%, #E0913F 62%, #6E5A33 100%);
+  }
+
+  /* Hero photo — full bleed */
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 58%;
+    z-index: 1;
+    display: block;
+  }
+
+  /* Legibility wash — darken top corners + bottom-left where text sits */
+  .wash {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(20,14,8,0.42) 0%, rgba(20,14,8,0.10) 34%, rgba(20,14,8,0) 56%),
+      linear-gradient(0deg, rgba(20,14,8,0.60) 0%, rgba(20,14,8,0.12) 30%, rgba(20,14,8,0) 52%),
+      linear-gradient(180deg, rgba(20,14,8,0.46) 0%, rgba(20,14,8,0.06) 22%, rgba(20,14,8,0) 40%);
+  }
+
+  .layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 86px 96px 80px;
+    box-sizing: border-box;
+  }
+
+  /* ----- TOP LEFT: logo + availability ----- */
+  .brand {
+    position: absolute;
+    top: 86px;
+    left: 96px;
+  }
+  .brand img {
+    display: block;
+    width: 500px;
+    height: auto;
+    filter: drop-shadow(0 2px 14px rgba(0,0,0,0.35));
+  }
+  .brand .avail {
+    margin-top: 14px;
+    font-family: var(--font-sans);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+    padding-left: 6px;
+  }
+
+  /* ----- TOP RIGHT: golf cart incentive seal ----- */
+  .badge {
+    position: absolute;
+    top: 76px;
+    right: 92px;
+    z-index: 4;
+    width: 384px;
+    height: 384px;
+    border-radius: 50%;
+    transform: rotate(-7deg);
+    background: radial-gradient(circle at 50% 36%, #F2C674 0%, #E7A94E 54%, #D58F36 100%);
+    box-shadow:
+      0 22px 54px -12px rgba(0,0,0,0.6),
+      inset 0 0 0 3px rgba(42,26,14,0.55),
+      inset 0 0 0 14px rgba(255,255,255,0.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .badge-inner {
+    text-align: center;
+    color: #2A1A0E;
+    padding: 0 30px;
+  }
+  .badge-top {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 11px;
+  }
+  .badge-div {
+    display: block;
+    width: 130px;
+    height: 1.5px;
+    background: rgba(42,26,14,0.45);
+    margin: 0 auto 11px;
+  }
+  .badge-main {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 47px;
+    line-height: 0.98;
+    white-space: nowrap;
+    margin-bottom: 12px;
+  }
+  .badge-sub {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    max-width: 230px;
+    margin: 0 auto;
+    line-height: 1.3;
+  }
+
+  /* ----- HEADLINE BLOCK (lower left) ----- */
+  .hero-copy {
+    position: absolute;
+    left: 96px;
+    bottom: 248px;
+    z-index: 3;
+  }
+  .headline {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 100px;
+    line-height: 1.08;
+    letter-spacing: -0.5px;
+    color: #fff;
+    text-shadow: 0 3px 30px rgba(0,0,0,0.45);
+    white-space: nowrap;
+  }
+  .headline .accent {
+    color: #E7A94E;
+    font-weight: 600;
+  }
+  .subline {
+    margin: 24px 0 0 0;
+    max-width: 1150px;
+    font-family: var(--font-sans);
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: var(--cream);
+    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+  }
+
+  /* ----- FOOTER CONTACT BAR ----- */
+  .footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    height: 178px;
+    background: linear-gradient(90deg, #543620 0%, #7B5233 100%);
+    box-shadow: 0 -18px 48px -20px rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 96px;
+    box-sizing: border-box;
+  }
+  .footer-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-lab {
+    font-family: var(--font-sans);
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #F2C674;
+  }
+  .footer-phone {
+    font-family: var(--font-sans);
+    font-size: 54px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    color: #fff;
+  }
+  .footer-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  .footer-tag {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(244,236,221,0.78);
+  }
+  .footer-url {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  /* ===== PRINT: 11" × 6.25" trim + 0.125" bleed all sides, with crop marks ===== */
+  .crop-marks { display: none; position: absolute; inset: 0; pointer-events: none; z-index: 9999; }
+  .crop-marks i { position: absolute; background: #000; }
+  @media print {
+    @page { size: 11.25in 6.5in; margin: 0; }
+    html, body {
+      width: 11.25in; height: 6.5in;
+      margin: 0; padding: 0; background: #fff; overflow: hidden;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .stage { width: 11.25in !important; height: 6.5in !important; }
+    .frame { width: 11.25in !important; height: 6.5in !important; aspect-ratio: auto !important; }
+    /* Scale the 2200px art slightly past the page so the full-bleed image covers the 0.125" bleed. */
+    #mailer {
+      top: 50% !important; left: 50% !important;
+      transform: translate(-50%, -50%) scale(0.506) !important;
+      transform-origin: center center !important;
+      box-shadow: none !important;
+    }
+    .crop-marks { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="frame" id="frame">
+    <div class="mailer" id="mailer" data-screen-label="Mailer Front">
+
+      <img class="hero-img" src="assets/hero-aerial.jpg" alt="Copper Creek aerial">
+
+      <div class="wash"></div>
+
+      <div class="layer">
+
+        <!-- TOP LEFT -->
+        <div class="brand">
+          <img src="assets/logo-white.png" alt="Copper Creek">
+          <div class="avail">Exclusive Opportunity</div>
+        </div>
+
+        <!-- TOP RIGHT: golf cart incentive seal -->
+        <div class="badge" role="img" aria-label="This July, a free custom golf cart with your custom home">
+          <div class="badge-inner">
+            <span class="badge-top">This July</span>
+            <span class="badge-div"></span>
+            <span class="badge-main">Free Custom<br>Golf Cart</span>
+            <span class="badge-sub">with your custom home</span>
+          </div>
+        </div>
+
+        <!-- HEADLINE -->
+        <div class="hero-copy">
+          <h1 class="headline">Your forever home.
+Pay way less in taxes.</h1>
+          <p class="subline">The home you've always pictured, on the land you've always wanted.</p>
+        </div>
+
+        <!-- FOOTER CONTACT BAR -->
+        <div class="footer">
+          <div class="footer-cta">
+            <span class="footer-lab">Schedule a Golf Cart Tour</span>
+            <span class="footer-phone">817.371.4848</span>
+          </div>
+          <div class="footer-right">
+            <span class="footer-tag">Final Phase Now Selling</span>
+            <span class="footer-url">estatesofcoppercreek.com</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Crop marks (print only) -->
+    <div class="crop-marks">
+      <i style="top:.125in;left:0;width:.1in;height:.75pt"></i><i style="top:0;left:.125in;width:.75pt;height:.1in"></i>
+      <i style="top:.125in;right:0;width:.1in;height:.75pt"></i><i style="top:0;right:.125in;width:.75pt;height:.1in"></i>
+      <i style="bottom:.125in;left:0;width:.1in;height:.75pt"></i><i style="bottom:0;left:.125in;width:.75pt;height:.1in"></i>
+      <i style="bottom:.125in;right:0;width:.1in;height:.75pt"></i><i style="bottom:0;right:.125in;width:.75pt;height:.1in"></i>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Screen preview: scale the 2200px art to fit the frame. Print uses the @media rules above. */
+  function fit() {
+    const frame = document.getElementById('frame');
+    const mailer = document.getElementById('mailer');
+    mailer.style.transform = 'scale(' + (frame.clientWidth / 2200) + ')';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+</script>
+
+</body>
+</html>
