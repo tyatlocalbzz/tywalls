@@ -16,6 +16,8 @@ a Precision Builders rebrand ahead of the next development (Cottonwood Canyon / 
 | `04-rebrand-brief.md` | Precision Builders two-brand direction (Q3, after lots close) |
 | `05-landing-page.md` | QR/RSVP destination page — section-by-section copy + build notes |
 | `06-social-posts.md` | Two-lane social set (polished Copper Creek + raw Precision Builders) |
+| `07-warm-lead-blast.md` | SMS + email scripts for last-mailer leads (fastest conversions) |
+| `08-landing-page-build-spec.md` | Developer/build spec to stand up the landing page |
 
 ## Blockers before the July mailers can ship (client to confirm)
 1. **Real tax numbers** — pull actual Denton County rates for the relevant districts.
